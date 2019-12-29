@@ -54,9 +54,13 @@ public class SuburbService {
                 }
             }
         } else {
-            suburbs = suburbRepository.findByMedianHousePriceNotNull(pageable).toList();
+            if(paramMap.get(Constants.stateParameter).equals(Constants.defaultStateSelection)) {
+                suburbs = suburbRepository.findByMedianHousePriceNotNull(pageable).toList();
+            } else {
+                suburbs = suburbRepository.findByStateAndMedianHousePriceNotNull(
+                        paramMap.get(Constants.stateParameter), pageable).toList();
+            }
         }
-
         return suburbs;
     }
 

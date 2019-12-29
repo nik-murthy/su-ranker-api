@@ -18,16 +18,6 @@ public class SuburbRankerController {
     @Autowired
     SuburbService suburbService;
 
-/*    @CrossOrigin(origins = "http://localhost:8080")
-    @GetMapping(value="/api/v1/suburbs")
-    @ResponseBody*/
-    /*public List<Suburbs> getSuburbs(@RequestParam(defaultValue = "All") String state,
-                                    @RequestParam(defaultValue = "1") int pageNo,
-                                    @RequestParam int mmp,
-                                    @RequestParam(defaultValue = "house") String type) {
-*/
-
-    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping(value="/api/v1/suburbs")
     @ResponseBody
     public List<Suburbs> getSuburbs(@RequestParam(defaultValue = Constants.defaultStateSelection) String state,

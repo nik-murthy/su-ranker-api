@@ -12,6 +12,9 @@ import org.springframework.stereotype.Repository;
 public interface SuburbRepository extends PagingAndSortingRepository<Suburbs, Integer> {
     Page<Suburbs> findByMedianHousePriceNotNull(Pageable pageable);
 
+    @Query("select c from suburbs c where median_house_price is not null and state<=:state")
+    Page<Suburbs> findByStateAndMedianHousePriceNotNull(String state, Pageable pageable);
+
     @Query("select c from suburbs c where median_house_price is not null and median_house_price<=:medianHousePrice")
     Page<Suburbs> findByMedianHousePriceLessThanEqual(@Param("medianHousePrice") int medianHousePrice,
                                                       Pageable pageable);

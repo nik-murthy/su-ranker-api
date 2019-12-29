@@ -1,14 +1,17 @@
 package com.suranker.api.Entity;
 
+import com.suranker.api.Constants;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity(name = "suburbs")
+@Entity(name = Constants.suburbsEntityName)
 public class Suburbs {
 
     @Id
-    private int suburb_id;
+    @Column(name = Constants.suburbIdColumnName)
+    private int suburbId;
     private String name;
     private int postcode;
     private String state;
@@ -27,8 +30,8 @@ public class Suburbs {
 
 
 
-    public int getSuburb_id() {
-        return suburb_id;
+    public int getSuburbId() {
+        return suburbId;
     }
 
     public String getName() {
