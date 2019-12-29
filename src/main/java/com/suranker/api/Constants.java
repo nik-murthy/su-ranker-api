@@ -20,7 +20,7 @@ public class Constants {
     public static final String suburbIdColumnName = "suburb_id";
     public static final String lgaEntityName = "lgas";
     public static final String lgaIdColumn = "lga_id";
-    public static final String univerisitiesEntityName = "universities";
+    public static final String universitiesEntityName = "universities";
     public static final String universityIdColumn = "university_id";
     public static final String suburbsEntityName = "suburbs";
 }

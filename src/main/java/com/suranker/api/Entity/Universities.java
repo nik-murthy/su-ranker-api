@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity(name = Constants.univerisitiesEntityName)
+@Entity(name = Constants.universitiesEntityName)
 public class Universities {
 
     @Id
@@ -14,7 +14,8 @@ public class Universities {
     private int universityId;
     private String name;
     private String campus_type;
-    private int suburb_id;
+    @Column(name = "suburb_id")
+    private int suburbId;
 
     public int getUniversityId() {
         return universityId;
@@ -28,8 +29,8 @@ public class Universities {
         return campus_type;
     }
 
-    public int getSuburb_id() {
-        return suburb_id;
+    public int getSuburbId() {
+        return suburbId;
     }
 
     public int getScore() {
