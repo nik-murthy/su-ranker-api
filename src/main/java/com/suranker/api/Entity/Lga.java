@@ -1,36 +1,38 @@
 package com.suranker.api.Entity;
 
-import com.suranker.api.Constants;
+import com.suranker.api.Util.Constants;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity(name = Constants.lgaEntityName)
-public class Lgas {
+public class Lga {
 
     @Id
     @Column(name = Constants.lgaIdColumn)
     private int lgaId;
-    private String lga_name;
+    @Column(name = Constants.lgaNameColumnName)
+    private String lgaName;
     private String type;
-    private String population_growth;
+    @Column(name = Constants.populationGrowthColumnName)
+    private String populationGrowth;
     private int score;
 
     public int getLgaId() {
         return lgaId;
     }
 
-    public String getLga_name() {
-        return lga_name;
+    public String getLgaName() {
+        return lgaName;
     }
 
     public String getType() {
         return type;
     }
 
-    public String getPopulation_growth() {
-        return population_growth;
+    public String getPopulationGrowth() {
+        return populationGrowth;
     }
 
     public int getScore() {

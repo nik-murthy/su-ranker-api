@@ -1,16 +1,20 @@
 package com.suranker.api.Service;
 
-import com.suranker.api.Constants;
-import com.suranker.api.Entity.Suburbs;
+import com.suranker.api.Model.SuburbModel;
+import com.suranker.api.Repository.HospitalRepository;
+import com.suranker.api.Repository.UniversityRepository;
+import com.suranker.api.Repository.WikipediaSummariesRepository;
+import com.suranker.api.Util.Constants;
+import com.suranker.api.Entity.Suburb;
 import com.suranker.api.Repository.SuburbRepository;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Map;
 
 @Component
@@ -19,9 +23,18 @@ public class SuburbService {
     @Autowired
     SuburbRepository suburbRepository;
 
-    public List<Suburbs> getSuburbs(Map<String, String> paramMap) {
+    @Autowired
+    HospitalRepository hospitalRepository;
 
-        List<Suburbs> suburbs;
+    @Autowired
+    UniversityRepository universityRepository;
+
+    @Autowired
+    WikipediaSummariesRepository wikipediaSummariesRepository;
+
+    public Page<Suburb> getSuburbs(Map<String, String> paramMap) {
+
+        Page<Suburb> suburbs;
 
         Pageable pageable = getPageNumberAndSort(paramMap);
 
@@ -39,29 +52,43 @@ public class SuburbService {
             if (!isPropertyTypeHouse) {
                 if(paramMap.get(Constants.stateParameter).equals(Constants.defaultStateSelection)) {
                     suburbs = suburbRepository.findByMedianUnitPriceLessThanEqual(
-                            maximumMedianPrice, pageable).toList();
+                            maximumMedianPrice, pageable);
                 } else {
                     suburbs = suburbRepository.findByStateAndMedianUnitPriceLessThanEqual(
-                            maximumMedianPrice, paramMap.get(Constants.stateParameter), pageable).toList();
+                            maximumMedianPrice, paramMap.get(Constants.stateParameter), pageable);
                 }
             } else {
                 if(paramMap.get(Constants.stateParameter).equals(Constants.defaultStateSelection)) {
                     suburbs = suburbRepository.findByMedianHousePriceLessThanEqual(
-                            maximumMedianPrice, pageable).toList();
+                            maximumMedianPrice, pageable);
                 } else {
                     suburbs = suburbRepository.findByStateAndMedianHousePriceLessThanEqual(
-                            maximumMedianPrice, paramMap.get(Constants.stateParameter), pageable).toList();
+                            maximumMedianPrice, paramMap.get(Constants.stateParameter), pageable);
                 }
             }
         } else {
             if(paramMap.get(Constants.stateParameter).equals(Constants.defaultStateSelection)) {
-                suburbs = suburbRepository.findByMedianHousePriceNotNull(pageable).toList();
+                suburbs = suburbRepository.findByMedianHousePriceNotNull(pageable);
+
             } else {
                 suburbs = suburbRepository.findByStateAndMedianHousePriceNotNull(
-                        paramMap.get(Constants.stateParameter), pageable).toList();
+                        paramMap.get(Constants.stateParameter), pageable);
             }
         }
         return suburbs;
+    }
+
+    public SuburbModel getSuburb(int suburbId) {
+
+        SuburbModel suburbModel = new SuburbModel();
+        suburbModel.setSuburbInfo(suburbRepository.findBySuburbId(suburbId, PageRequest.of(0, 1))
+                .getContent().get(0));
+
+        suburbModel.setHospitals(hospitalRepository.findBySuburbId(suburbId));
+        suburbModel.setUniversities(universityRepository.findBySuburbId(suburbId));
+        suburbModel.setWikiSummary(wikipediaSummariesRepository.findBySuburbId(suburbId).get(0));
+
+        return suburbModel;
     }
 
     private int getParsedIntegerValue(String parameter) {

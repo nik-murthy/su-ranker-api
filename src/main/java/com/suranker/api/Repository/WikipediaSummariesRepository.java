@@ -1,14 +1,13 @@
 package com.suranker.api.Repository;
 
-import com.suranker.api.Entity.WikipediaSummaries;
+import com.suranker.api.Entity.WikipediaSummary;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface WikipediaSummariesRepository extends JpaRepository<WikipediaSummaries, Integer> {
+public interface WikipediaSummariesRepository extends JpaRepository<WikipediaSummary, Integer> {
 
-    List<WikipediaSummaries> findBySuburbId(int suburbId);
+    List<WikipediaSummary> findBySuburbId(int suburbId);
 }

@@ -1,13 +1,13 @@
 package com.suranker.api.Entity;
 
-import com.suranker.api.Constants;
+import com.suranker.api.Util.Constants;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity(name = Constants.universitiesEntityName)
-public class Universities {
+public class University {
 
     @Id
     @Column(name = Constants.universityIdColumn)
