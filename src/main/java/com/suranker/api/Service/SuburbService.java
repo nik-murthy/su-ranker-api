@@ -1,12 +1,10 @@
 package com.suranker.api.Service;
 
+import com.suranker.api.Entity.Lga;
 import com.suranker.api.Model.SuburbModel;
-import com.suranker.api.Repository.HospitalRepository;
-import com.suranker.api.Repository.UniversityRepository;
-import com.suranker.api.Repository.WikipediaSummariesRepository;
+import com.suranker.api.Repository.*;
 import com.suranker.api.Util.Constants;
 import com.suranker.api.Entity.Suburb;
-import com.suranker.api.Repository.SuburbRepository;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,6 +29,9 @@ public class SuburbService {
 
     @Autowired
     WikipediaSummariesRepository wikipediaSummariesRepository;
+
+    @Autowired
+    LgaRepository lgaRepository;
 
     public Page<Suburb> getSuburbs(Map<String, String> paramMap) {
 
@@ -84,6 +85,9 @@ public class SuburbService {
         suburbModel.setSuburbInfo(suburbRepository.findBySuburbId(suburbId, PageRequest.of(0, 1))
                 .getContent().get(0));
 
+        int lgaId = suburbModel.getSuburbInfo().getLga_id();
+        Lga lga = lgaRepository.findByLgaId(lgaId).get(0);
+        suburbModel.setLga(lgaRepository.findByLgaId(suburbModel.getSuburbInfo().getLga_id()).get(0));
         suburbModel.setHospitals(hospitalRepository.findBySuburbId(suburbId));
         suburbModel.setUniversities(universityRepository.findBySuburbId(suburbId));
         suburbModel.setWikiSummary(wikipediaSummariesRepository.findBySuburbId(suburbId).get(0));

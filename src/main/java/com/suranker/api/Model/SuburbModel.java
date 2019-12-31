@@ -11,8 +11,9 @@ public class SuburbModel {
     @JsonProperty
     private Suburb suburbInfo;
 
-//    @JsonProperty
-//    private Lga lga;
+    @JsonProperty
+    private Lga lga;
+
     @JsonProperty
     private List<Hospital> hospitals;
 
@@ -30,10 +31,9 @@ public class SuburbModel {
         this.wikiSummary = wikiSummary;
     }
 
-
-//    public void setLga(Lga lga) {
-//        this.lga = lga;
-//    }
+    public void setLga(Lga lga) {
+        this.lga = lga;
+    }
 
     public void setHospitals(List<Hospital> hospitals) {
         this.hospitals = hospitals;
@@ -42,4 +42,9 @@ public class SuburbModel {
     public void setUniversities(List<University> universities) {
         this.universities = universities;
     }
+
+    public Suburb getSuburbInfo() {
+        return suburbInfo;
+    }
+
 }
