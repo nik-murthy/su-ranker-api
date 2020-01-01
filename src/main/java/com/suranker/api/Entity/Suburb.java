@@ -17,12 +17,14 @@ public class Suburb {
     private int postcode;
     private String state;
     private int sa2region;
-    private int lga_id;
-    private int d_score;
-    private int h_score;
-    private int u_score;
+    private int lgaId;
+    //@Column(name = Constants.demographicsSortColumn)
+    private int dScore;
+    private int hScore;
+    private int uScore;
     private int skew;
     private int total;
+    private int overallRank;
     private int medianHousePrice;
     private int medianUnitPrice;
 
@@ -54,20 +56,20 @@ public class Suburb {
         return sa2region;
     }
 
-    public int getLga_id() {
-        return lga_id;
+    public int getLgaId() {
+        return lgaId;
     }
 
-    public int getD_score() {
-        return d_score;
+    public int getdScore() {
+        return dScore;
     }
 
-    public int getH_score() {
-        return h_score;
+    public int gethScore() {
+        return hScore;
     }
 
-    public int getU_score() {
-        return u_score;
+    public int getuScore() {
+        return uScore;
     }
 
     public int getSkew() {

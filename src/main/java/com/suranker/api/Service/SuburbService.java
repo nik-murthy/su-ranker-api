@@ -96,9 +96,9 @@ public class SuburbService {
         suburbModel.setSuburbInfo(suburbRepository.findBySuburbId(suburbId, PageRequest.of(0, 1))
                 .getContent().get(0));
 
-        int lgaId = suburbModel.getSuburbInfo().getLga_id();
+        int lgaId = suburbModel.getSuburbInfo().getLgaId();
         Lga lga = lgaRepository.findByLgaId(lgaId).get(0);
-        suburbModel.setLga(lgaRepository.findByLgaId(suburbModel.getSuburbInfo().getLga_id()).get(0));
+        suburbModel.setLga(lgaRepository.findByLgaId(suburbModel.getSuburbInfo().getLgaId()).get(0));
         suburbModel.setHospitals(hospitalRepository.findBySuburbId(suburbId));
         suburbModel.setUniversities(universityRepository.findBySuburbId(suburbId));
         suburbModel.setWikiSummary(wikipediaSummariesRepository.findBySuburbId(suburbId).get(0));
@@ -115,13 +115,20 @@ public class SuburbService {
     }
 
     private Pageable getPageNumberAndSort(Map<String, String> paramMap){
-        Pageable pageable = PageRequest.of(
-                getParsedIntegerValue(paramMap.get(Constants.pageNumberParameter)) - 1,
-                10,
-                Sort.by("total").descending().
-                        and(Sort.by("skew").ascending()));
 
-        return pageable;
+        if(paramMap.get(Constants.sortParameter).equals(Constants.defaultSortOrder)) {
+            return PageRequest.of(
+                    getParsedIntegerValue(paramMap.get(Constants.pageNumberParameter)) - 1,
+                    10,
+                    Sort.by(Constants.relevanceSortColumn).descending());
+
+        } else {
+            return PageRequest.of(
+                    getParsedIntegerValue(paramMap.get(Constants.pageNumberParameter)) - 1,
+                    10,
+                    Sort.by(Constants.demographicsSortColumn).descending());
+
+        }
     }
 
 }

@@ -62,5 +62,6 @@ public final class Constants {
     public static final String successfulResponseMessage = "Success";
 
     public static final int numSuburbs = 16125;
-
+    public static final String relevanceSortColumn = "overallRank";
+    public static final String demographicsSortColumn = "dScore";
 }
