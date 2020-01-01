@@ -68,12 +68,23 @@ public class SuburbService {
                 }
             }
         } else {
-            if(paramMap.get(Constants.stateParameter).equals(Constants.defaultStateSelection)) {
-                suburbs = suburbRepository.findByMedianHousePriceNotNull(pageable);
+            if(!isPropertyTypeHouse) {
+                if(paramMap.get(Constants.stateParameter).equals(Constants.defaultStateSelection)) {
+                    suburbs = suburbRepository.findByMedianHousePriceNotNullAndMedianUnitPriceNotNull(pageable);
+
+                } else {
+                    suburbs = suburbRepository.findByStateAndMedianUnitPriceNotNull(
+                            paramMap.get(Constants.stateParameter), pageable);
+                }
 
             } else {
-                suburbs = suburbRepository.findByStateAndMedianHousePriceNotNull(
-                        paramMap.get(Constants.stateParameter), pageable);
+                if(paramMap.get(Constants.stateParameter).equals(Constants.defaultStateSelection)) {
+                    suburbs = suburbRepository.findByMedianHousePriceNotNullAndMedianUnitPriceNotNull(pageable);
+
+                } else {
+                    suburbs = suburbRepository.findByStateAndMedianHousePriceNotNull(
+                            paramMap.get(Constants.stateParameter), pageable);
+                }
             }
         }
         return suburbs;

@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class WikipediaSummary {
 
     @Id
-    @Column(name = Constants.suburbIdColumnName)
+    @Column(name = Constants.suburbIdColumn)
     private int suburbId;
     private String wikipedia_summary;
 

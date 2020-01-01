@@ -12,9 +12,9 @@ public class Hospital {
     @Id
     @Column(name = Constants.hospitalIdColumn)
     private int hospitalId;
-    @Column(name = "name")
+    @Column(name = Constants.hospitalNameColumn)
     private String hospitalName;
-    @Column(name = Constants.suburbIdColumnName)
+    @Column(name = Constants.suburbIdColumn)
     private int suburbId;
     private String beds;
     private String teaching_hospital;

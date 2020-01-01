@@ -10,8 +10,9 @@ import javax.persistence.Id;
 public class Suburb {
 
     @Id
-    @Column(name = Constants.suburbIdColumnName)
+    @Column(name = Constants.suburbIdColumn)
     private int suburbId;
+    @Column(name = Constants.suburbNameColumn)
     private String name;
     private int postcode;
     private String state;
@@ -23,12 +24,15 @@ public class Suburb {
     private int skew;
     private int total;
     private int medianHousePrice;
+    private int medianUnitPrice;
 
     public int getMedianHousePrice() {
         return medianHousePrice;
     }
 
-
+    public int getMedianUnitPrice() {
+        return medianUnitPrice;
+    }
 
     public int getSuburbId() {
         return suburbId;

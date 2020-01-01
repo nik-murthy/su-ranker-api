@@ -12,6 +12,7 @@ public class University {
     @Id
     @Column(name = Constants.universityIdColumn)
     private int universityId;
+    @Column(name = Constants.uniNameColumn)
     private String name;
     private String campus_type;
     @Column(name = "suburb_id")

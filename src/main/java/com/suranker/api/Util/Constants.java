@@ -29,7 +29,7 @@ public final class Constants {
     public static final String hospitalEntityName = "hospitals";
     public static final String hospitalIdColumn = "hospital_id";
     public static final String wikiSumaaryEntityName = "wikipedia_desc";
-    public static final String suburbIdColumnName = "suburb_id";
+    public static final String suburbIdColumn = "suburb_id";
     public static final String lgaEntityName = "lgas";
     public static final String lgaIdColumn = "lga_id";
     public static final String universitiesEntityName = "universities";
@@ -37,6 +37,9 @@ public final class Constants {
     public static final String suburbsEntityName = "suburbs";
     public static final String lgaNameColumnName = "lga_name";
     public static final String populationGrowthColumnName = "population_growth";
+    public static final String uniNameColumn = "university_name";
+    public static final String suburbNameColumn = "suburb_name";
+    public static final String hospitalNameColumn = "hospital_name";
 
     //Response related
     public static final String responseDataParameter = "data";
