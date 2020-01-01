@@ -1,22 +1,18 @@
 language: java
-
 jdk:
-  - openjdk8
-
+- openjdk8
 cache:
   directories:
-    - $HOME/.m2
-
-env:
-  - NODE_VERSION="6"
-
-before_install:
-  - nvm install $NODE_VERSION
-  - node --version
-  - npm --version
-
-install:
-  - npm install -g serverless
-
+  - "$HOME/.m2"
 script:
-  - mvn clean install -B
+- mvn clean install -B
+- deploy:
+  provider: elasticbeanstalk
+  access-key-id:
+    secure: gEHOzTCr9zClpDDULGFRM9Kd59kMWvr71CFjEzPJy8mbgoVyYpgwhtjs+jR2kq7hENztsHik3xeOKaOSuqmrc9ulnpucFKzVlfy2mWJlNQj10/k4jLaeDXvSWdptMLn1Qyj1PAUl0oqM2xfXs0uKvNtdKirKFU+E1OTsmW4HF5y8D7PxPLoNYpjLfgwqUy/YceS4qroDaunQe+MoSaIkYd7tPu+GNakkc5TezBOriEZhu+gyKxrZ+ZHtvdgiH2vwjZ83yO4991pZGaF1vAbDFdOOtemjzVk38WZwqVvWEHAlyDDu+ed60+ZbH6dxmax2ClatCwC2/HlAy+10eVbh5w10unjWGY/mm9hV2PjmrFevOlQdLBlRvuvXIedWOdCZqD2ISi5MJ+pm1m5ayZC1P1QJJOp6GjIongPnosobIfSAorVhEcPVVHjjtY1WvPYFCjWBJA5oeLzzcjbNq0aLGlX1MBwNuSaMD/5QwXT4Suuilxly/+3axr9/k5ZJXkA0J/cyexOtEuvYwcXmlMMj0T9mHrpsboBkSWj+e4Wk7niBAEAWoriZa5q9gowaY+5CcQA73QCqFQOXrZhKza139laxNW2xYM664+LNRsOSsCjGhcMIifacS/NrEuFGwha/B9MONyereHG3Ziwn222DRFRUvsKARingE6NVxbHhtaE=
+  secret-access-key:
+    secure: I8LVRpVU0hI2vvJlV0py1VyLK23Pk0+vGYyAW3EGiXWNCcFChzOq8aq/KjjLu868wd6DIq42S4Wg3/XlEXNrH9uTK1P7V09AF1hxQyzQeXJqNzjY9xWxxmkKx/pN+NpYNSQ+paX7pNTp4nqxr1YtwNJH0qF8G9gZflw04iyHepl89f4SofPm0ivdBCb+ApKAN8+aTOKAZGhVkH1pikb5o0+atZkUYkSWJEvmUUok+wio/DgAqtiJK/F5vUU9wEiepeBKGFFIs44YX2QNLtWtMJfFtiOn+qTUtMwcSec2pmXwpVIN7zqrHDy5roRqhdyU85M82B22F2fodA0KyRpzB7oGMErQBEfVURzfvSiJblVvZVPpJUNFm/uf7xWRaDuXQdaZm5FTgWBUPf5odXaaYNzAzu9hLAHw7d3KY9JEVdU7QxxAJxfj/1WH1pf0unLN7ybH+K3VNoCGxIzHyAYFpl9aU8LoSaoL6BanG3J7NKr6C6kc6IjO0qj8lBFMDR/nzg2nr5QF2SiWaCTFPINRG1OEeR9RlnAjvdpxm54XTxQN4/NTmqufEVuU8vobpDi14sArRYab3+5FDAQ4cT9t3vAYrtLgrKHqprLsjSGLmg1/1/zevrey/YwrVBCyd2Y/LP76euqpom7E8YYYiYhEaeH9yuh/MGlnFFKGUWiERys=
+  region: "ap-southeast-2"
+  app: "su-ranker"
+  env: "SuRanker-env"
+  bucket_name: "elasticbeanstalk-ap-southeast-2-493722324745"
