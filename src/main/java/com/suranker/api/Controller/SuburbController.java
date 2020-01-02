@@ -22,6 +22,7 @@ public class SuburbController {
     @Autowired
     SuburbService suburbService;
 
+    @CrossOrigin
     @GetMapping(value="/api/v1/suburbs")
     public ResponseEntity<Object> getSuburbs(@RequestParam(defaultValue = Constants.defaultStateSelection) String state,
                                               @RequestParam(defaultValue = Constants.defaultPageNo) String pageNo,
@@ -92,6 +93,7 @@ public class SuburbController {
         return new ResponseEntity<>(responseMap, HttpStatus.ACCEPTED);
     }
 
+    @CrossOrigin
     @GetMapping("/api/v1/suburb")
     public ResponseEntity<Object> getSuburb(@RequestParam String suburbId) {
         Map<String, Object> responseMap = new HashMap<String, Object>();
