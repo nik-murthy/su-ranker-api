@@ -16,12 +16,12 @@ public interface SuburbRepository extends PagingAndSortingRepository<Suburb, Int
 
     @Query("select c from suburbs c where median_house_price is not null" +
             " and median_unit_price is not null" +
-            " and state<=:state")
+            " and state=:state")
     Page<Suburb> findByStateAndMedianHousePriceNotNull(String state, Pageable pageable);
 
     @Query("select c from suburbs c where median_unit_price is not null" +
             " and median_house_price is not null" +
-            " and state<=:state")
+            " and state=:state")
     Page<Suburb> findByStateAndMedianUnitPriceNotNull(String state, Pageable pageable);
 
 
