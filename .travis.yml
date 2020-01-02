@@ -6,11 +6,13 @@ cache:
   - "$HOME/.m2"
 script: mvn package -DskipTests
 before_deploy:
-  - zip su-ranker-api-0.0.1-SNAPSHOT.jar.zip ${TRAVIS_HOME}/build/nik-murthy/su-ranker-api/target/su-ranker-api-0.0.1-SNAPSHOT.jar
+  - rm ${TRAVIS_HOME}/build/nik-murthy/application.jar.zip
+  - zip ${TRAVIS_HOME}/build/nik-murthy/application.jar.zip ${TRAVIS_HOME}/build/nik-murthy/su-ranker-api/target/su-ranker-api-0.0.1-SNAPSHOT.jar
 deploy:
   provider: elasticbeanstalk
   skip_cleanup: true
-  zip_file: ${TRAVIS_HOME}/build/nik-murthy/su-ranker-api/target/su-ranker-api-0.0.1-SNAPSHOT.jar.zip
+  local_dir: ${TRAVIS_HOME}/build/nik-murthy/
+  zip_file: ${TRAVIS_HOME}/build/nik-murthy/application.jar.zip
   access-key-id:
     secure: gEHOzTCr9zClpDDULGFRM9Kd59kMWvr71CFjEzPJy8mbgoVyYpgwhtjs+jR2kq7hENztsHik3xeOKaOSuqmrc9ulnpucFKzVlfy2mWJlNQj10/k4jLaeDXvSWdptMLn1Qyj1PAUl0oqM2xfXs0uKvNtdKirKFU+E1OTsmW4HF5y8D7PxPLoNYpjLfgwqUy/YceS4qroDaunQe+MoSaIkYd7tPu+GNakkc5TezBOriEZhu+gyKxrZ+ZHtvdgiH2vwjZ83yO4991pZGaF1vAbDFdOOtemjzVk38WZwqVvWEHAlyDDu+ed60+ZbH6dxmax2ClatCwC2/HlAy+10eVbh5w10unjWGY/mm9hV2PjmrFevOlQdLBlRvuvXIedWOdCZqD2ISi5MJ+pm1m5ayZC1P1QJJOp6GjIongPnosobIfSAorVhEcPVVHjjtY1WvPYFCjWBJA5oeLzzcjbNq0aLGlX1MBwNuSaMD/5QwXT4Suuilxly/+3axr9/k5ZJXkA0J/cyexOtEuvYwcXmlMMj0T9mHrpsboBkSWj+e4Wk7niBAEAWoriZa5q9gowaY+5CcQA73QCqFQOXrZhKza139laxNW2xYM664+LNRsOSsCjGhcMIifacS/NrEuFGwha/B9MONyereHG3Ziwn222DRFRUvsKARingE6NVxbHhtaE=
   secret-access-key:
