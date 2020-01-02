@@ -6,7 +6,6 @@ cache:
   - "$HOME/.m2"
 script: mvn package -DskipTests
 before_deploy:
-  - rm ${TRAVIS_HOME}/build/nik-murthy/application.jar.zip
   - zip ${TRAVIS_HOME}/build/nik-murthy/application.jar.zip ${TRAVIS_HOME}/build/nik-murthy/su-ranker-api/target/su-ranker-api-0.0.1-SNAPSHOT.jar
 deploy:
   provider: elasticbeanstalk
