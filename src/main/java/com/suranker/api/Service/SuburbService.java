@@ -119,13 +119,13 @@ public class SuburbService {
         if(paramMap.get(Constants.sortParameter).equals(Constants.defaultSortOrder)) {
             return PageRequest.of(
                     getParsedIntegerValue(paramMap.get(Constants.pageNumberParameter)) - 1,
-                    10,
+                    9,
                     Sort.by(Constants.relevanceSortColumn).descending());
 
         } else {
             return PageRequest.of(
                     getParsedIntegerValue(paramMap.get(Constants.pageNumberParameter)) - 1,
-                    10,
+                    9,
                     Sort.by(Constants.demographicsSortColumn).descending());
 
         }
